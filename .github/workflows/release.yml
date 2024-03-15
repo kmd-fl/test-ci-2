@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      release-created: ${{ steps.release.outputs['release_created'] }}
-      tag-name: ${{ steps.release.outputs['tag_name'] }}
       version: ${{ steps.release.outputs['version'] }}
       pr: ${{ steps.release.outputs['pr'] }}
 
