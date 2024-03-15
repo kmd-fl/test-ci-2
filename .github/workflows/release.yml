@@ -19,7 +19,7 @@ jobs:
       - name: Release with release-please
         uses: google-github-actions/release-please-action@v2
         with:
-            default-branch: main
+            release-type: simple
 
       - name: Show output from release-please
         if: steps.release.outputs.releases_created
