@@ -10,7 +10,9 @@
       }
   ],
   "packages": {
-    "test-ci-2": { },
-    "test-lib": { }
+    ".": {
+		"package-name": "test-ci",
+		"compontent": "test-ci"
+    },
   }
 }
