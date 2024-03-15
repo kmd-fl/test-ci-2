@@ -21,6 +21,7 @@ jobs:
         with:
             token: ${{ secrets.RELEASE_TOKEN }}
             release-type: rust
+            manifest-file: .github/release-please/manifest.json
 
 
       - name: Show output from release-please
