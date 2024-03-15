@@ -32,41 +32,40 @@ jobs:
           RELEASE_PLEASE_OUTPUT: ${{ toJSON(steps.release.outputs) }}
         run: echo "${RELEASE_PLEASE_OUTPUT}" | jq
 
-  bump-version:
-    #if: needs.release-please.outputs.pr != null
-    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
-    runs-on: builder
-    needs:
-      - release-please
+  #bump-version:
+  #  if: needs.release-please.outputs.pr != null
+  #  runs-on: builder
+  #  needs:
+  #    - release-please
 
-    permissions:
-      contents: write
+  #  permissions:
+  #    contents: write
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ fromJson(needs.release-please.outputs.pr).headBranchName }}
+  #  steps:
+  #    - name: Checkout
+  #      uses: actions/checkout@v4
+  #      with:
+  #        ref: ${{ fromJson(needs.release-please.outputs.pr).headBranchName }}
 
-      - name: Get version
-        id: version
-        run: |
-          version="$(jq -r '.[]' .github/release-please/manifest.json)"
-          echo "version=${version}" >> $GITHUB_OUTPUT
+  #    - name: Get version
+  #      id: version
+  #      run: |
+  #        version="$(jq -r '.[]' .github/release-please/manifest.json)"
+  #        echo "version=${version}" >> $GITHUB_OUTPUT
 
-      - name: Setup Rust toolchain
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+  #    - name: Setup Rust toolchain
+  #      uses: actions-rust-lang/setup-rust-toolchain@v1
 
-      - name: Install cargo-edit
-        uses: baptiste0928/cargo-install@v3.0.0
-        with:
-          crate: cargo-edit
+  #    - name: Install cargo-edit
+  #      uses: baptiste0928/cargo-install@v3.0.0
+  #      with:
+  #        crate: cargo-edit
 
-      - name: Set version
-        run: cargo set-version ${{ steps.version.outputs.version }}
+  #    - name: Set version
+  #      run: cargo set-version ${{ steps.version.outputs.version }}
 
-      - name: Commit version bump
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: Bump version to ${{ steps.version.outputs.version }}"
-          branch: ${{ fromJson(needs.release-please.outputs.pr).headBranchName }}
+  #    - name: Commit version bump
+  #      uses: stefanzweifel/git-auto-commit-action@v5
+  #      with:
+  #        commit_message: "chore: Bump version to ${{ steps.version.outputs.version }}"
+  #        branch: ${{ fromJson(needs.release-please.outputs.pr).headBranchName }}

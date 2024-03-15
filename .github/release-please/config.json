@@ -6,8 +6,8 @@
   "plugins": ["cargo-workspace"],
   "packages": {
     ".": {
-      "package-name": "test-ci",
-      "component": "test-ci"
+      "package-name": "my-package",
+      "component": "my-package"
     }
   }
 }
