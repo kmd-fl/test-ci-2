@@ -6,6 +6,6 @@
   "plugins": ["cargo-workspace"],
   "packages": {
     "test-ci-2": { },
-    "test-lib": { },
+    "test-lib": { }
   }
 }
