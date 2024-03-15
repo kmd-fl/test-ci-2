@@ -29,13 +29,5 @@ jobs:
       - name: Setup cargo-nextest
         uses: taiki-e/install-action@nextest
 
-      - name: Setup marine
-        uses: fluencelabs/setup-marine@v1
-        with:
-          artifact-name: marine
-
-      - name: Setup IPFS CLI
-        uses: nahsi/setup-ipfs@v1
-
       - name: Run tests
         run: cargo test
