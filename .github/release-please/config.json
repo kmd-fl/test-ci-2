@@ -11,8 +11,8 @@
   ],
   "packages": {
     ".": {
-		"package-name": "test-ci",
-		"compontent": "test-ci"
-    },
+        "package-name": "test-ci",
+        "compontent": "test-ci"
+    }
   }
 }
