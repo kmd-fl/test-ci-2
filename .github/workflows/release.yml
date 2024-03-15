@@ -15,6 +15,7 @@ jobs:
     outputs:
       version: ${{ steps.release.outputs['version'] }}
       pr: ${{ steps.release.outputs['pr'] }}
+      releases_created: ${{ steps.release.outputs['releases_created'] }}
 
     steps:
       - name: Release with release-please
@@ -27,13 +28,13 @@ jobs:
 
 
       - name: Show output from release-please
-        if: steps.release.outputs.releases_created
         env:
           RELEASE_PLEASE_OUTPUT: ${{ toJSON(steps.release.outputs) }}
         run: echo "${RELEASE_PLEASE_OUTPUT}" | jq
 
   bump-version:
-    if: needs.release-please.outputs.pr != null
+    #if: needs.release-please.outputs.pr != null
+    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
     runs-on: builder
     needs:
       - release-please
